@@ -26,6 +26,9 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 const useStyles = makeStyles((theme) => ({
   logo: {
     height: "5em",
+    [theme.breakpoints.down("sm")]: {
+      height: "4em",
+    },
   },
   logoText: {
     fontWeight: 800,
@@ -53,6 +56,12 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarMargin: {
     marginTop: "7em",
+    [theme.breakpoints.down("md")]: {
+      marginTop: "5.5em",
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "4.5em",
+    },
   },
   drawer: {
     backgroundColor: `${theme.palette.primary.main} !important`,
