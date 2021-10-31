@@ -21,5 +21,17 @@ const theme = createTheme({
       info: "#ffffff",
     },
   },
+  typography: {
+    homeText: {
+      fontFamily: "Raleway",
+      position: "absolute",
+      background: arcBlue,
+      color: arcWhite,
+      fontSize: "92px",
+      textTransform: "uppercase",
+      padding: "0px 20px",
+      fontWeight: 600,
+    },
+  },
 });
 export default theme;

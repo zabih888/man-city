@@ -26,9 +26,9 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 const useStyles = makeStyles((theme) => ({
   logo: {
     height: "5em",
-    [theme.breakpoints.down("sm")]: {
-      height: "4em",
-    },
+    // [theme.breakpoints.down("sm")]: {
+    //   height: "4em",
+    // },
   },
   logoText: {
     fontWeight: 800,
@@ -37,13 +37,10 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Raleway",
     marginLeft: ".5em",
     [theme.breakpoints.down("md")]: {
-      fontSize: "1.8rem",
+      fontSize: "2.3rem",
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize: "1.6rem",
-    },
-    [theme.breakpoints.only("xs")]: {
-      fontSize: "1.3rem",
+      fontSize: "1.8rem",
     },
   },
   tabContainer: {
@@ -55,12 +52,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "600 !important",
   },
   toolbarMargin: {
-    marginTop: "7em",
     [theme.breakpoints.down("md")]: {
-      marginTop: "5.5em",
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginTop: "4.5em",
+      marginTop: "7em",
     },
   },
   drawer: {
@@ -110,7 +103,7 @@ const Header = () => {
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const matchesSM = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
   const [value, setValue] = useState(0);
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -168,12 +161,12 @@ const Header = () => {
   return (
     <Fragment>
       <ElevationScroll>
-        <AppBar style={{ zIndex: theme.zIndex.modal + 1 }}>
+        <AppBar style={{ zIndex: theme.zIndex.modal + 1, padding: ".5em", borderBottom: "1px solid black"}}>
           <Toolbar>
             <img src={logo} className={classes.logo} />
             <h1 className={classes.logoText}>Manchester City</h1>
-            {matchesSM ? drawer : tabs}
-            {matchesSM ? (
+            {matchesMD ? drawer : tabs}
+            {matchesMD ? (
               <IconButton
                 className={classes.toggleContainer}
                 onClick={handleClick}
@@ -184,7 +177,7 @@ const Header = () => {
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      <div className={classes.toolbarMargin} />
+      {/* <div className={classes.toolbarMargin} />s */}
     </Fragment>
   );
 };
