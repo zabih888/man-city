@@ -1,5 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import firebase from "firebase/compat/app";
+import Routes from "./routes";
+import "./App.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const App = (props) => {
+  return <Routes {...props} />;
+};
+
+firebase.auth().onAuthStateChanged((user) => {
+  ReactDOM.render(<App user={user} />, document.getElementById("root"));
+});

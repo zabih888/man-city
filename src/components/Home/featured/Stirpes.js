@@ -16,7 +16,7 @@ let stripesState = [
   },
   {
     id: Math.random(),
-    background: `${theme.palette.secondary.main}`,
+    background: `${theme.palette.common.white}`,
     left: 360,
     rotate: 25,
     top: -397,
@@ -42,7 +42,7 @@ let stripesStateMd = [
   },
   {
     id: Math.random(),
-    background: `${theme.palette.secondary.main}`,
+    background: `${theme.palette.common.white}`,
     left: 220,
     rotate: 20,
     top: -218,
@@ -94,7 +94,7 @@ let stripesStateXS = [
   },
   {
     id: Math.random(),
-    background: `${theme.palette.secondary.main}`,
+    background: `${theme.palette.common.white}`,
     left: 109,
     rotate: 0,
     top: -218,

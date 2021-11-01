@@ -4,28 +4,30 @@ import theme from "./components/UI/Theme";
 import Header from "./components/UI/Header";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
-import SignIn from "./components/SignIn/index";
-import "./App.css"
+import SignIn from "./components/SignIn";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
-const App = () => {
+const Routes = ({user}) => {
   return (
     <Fragment>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Header />
+          <Header user={user} />
           <Switch>
-            <Route exact path="sign-in" component={SignIn} />
+            <Route exact path="/sign-in" component={SignIn} />
             <Route exact path="/" component={Home} />
             <Route exact path="/matches" component={() => <div>Matches</div>} />
             <Route exact path="/players" component={() => <div>Players</div>} />
-            <Route exact path="/log" component={() => <div>Log</div>} />
+            <Route exact path="/dashboard" component={() => <div>Log</div>} />
           </Switch>
+          <ToastContainer />
         </BrowserRouter>
       </ThemeProvider>
     </Fragment>
   );
 };
 
-export default App;
+export default Routes;

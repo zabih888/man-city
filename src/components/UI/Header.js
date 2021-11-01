@@ -14,6 +14,7 @@ import {
   IconButton,
   ListItemIcon,
   useMediaQuery,
+  Button,
 } from "@mui/material";
 import logo from "../images/logos/manchester_city_logo.png";
 import { Link } from "react-router-dom";
@@ -22,6 +23,8 @@ import GroupIcon from "@mui/icons-material/Group";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { firebase } from "../../firebase";
+import { showErrorToast, showSuccessToast } from "../Utils/tools";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -86,19 +89,24 @@ function ElevationScroll(props) {
   });
 }
 
-const routes = [
-  { name: "Home", link: "/", activeIndex: 0, icon: <DashboardIcon /> },
-  {
-    name: "Matches",
-    link: "/matches",
-    activeIndex: 1,
-    icon: <ListAltIcon />,
-  },
-  { name: "Players", link: "/players", activeIndex: 2, icon: <GroupIcon /> },
-  { name: "Log", link: "/log", activeIndex: 3, icon: <ExitToAppIcon /> },
-];
+const Header = ({ user }) => {
+  const routes = [
+    { name: "Home", link: "/", activeIndex: 0, icon: <DashboardIcon /> },
+    {
+      name: "Matches",
+      link: "/matches",
+      activeIndex: 1,
+      icon: <ListAltIcon />,
+    },
+    { name: "Players", link: "/players", activeIndex: 2, icon: <GroupIcon /> },
 
-const Header = () => {
+    // {
+    //   name: "dashboard",
+    //   link: "/dashboard",
+    //   activeIndex: 3,
+    //   icon: <ExitToAppIcon />,
+    // },
+  ];
   const classes = useStyles();
   const iOS =
     typeof navigator !== "undefined" &&
@@ -113,6 +121,17 @@ const Header = () => {
   };
   const handleClick = () => {
     setOpenDrawer(!openDrawer);
+  };
+  const logoutHandler = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        showSuccessToast("Good bye")
+      })
+      .catch((error) => {
+        showErrorToast(error.message)
+      });
   };
   const tabs = (
     <Tabs
@@ -133,6 +152,22 @@ const Header = () => {
           className={classes.tabText}
         />
       ))}
+
+      {user ? (
+        <>
+          <Tab
+            label="dashboard"
+            to="/dashboard"
+            value={3}
+            component={Link}
+            key="dasboard 3"
+            className={classes.tabText}
+          />
+          <Button onClick={logoutHandler} variant="contained" color="secondary">
+            logOut
+          </Button>
+        </>
+      ) : undefined}
     </Tabs>
   );
   const drawer = (
@@ -161,7 +196,13 @@ const Header = () => {
   return (
     <Fragment>
       <ElevationScroll>
-        <AppBar style={{ zIndex: theme.zIndex.modal + 1, padding: ".5em", borderBottom: "1px solid black"}}>
+        <AppBar
+          style={{
+            zIndex: theme.zIndex.modal + 1,
+            padding: ".5em",
+            borderBottom: "1px solid black",
+          }}
+        >
           <Toolbar>
             <img src={logo} className={classes.logo} />
             <h1 className={classes.logoText}>Manchester City</h1>

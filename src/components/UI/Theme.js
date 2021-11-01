@@ -7,18 +7,18 @@ const arcWhite = "#ffffff";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#98c5e9",
+      main: arcLightBlue,
     },
     secondary: {
-      main: "#ffffff",
+      main: arcBlue,
     },
-    info: {
-      main: "#0d1831",
+    common: {
+      white: arcWhite,
     },
     text: {
-      primary: "#ffffff",
-      secondary: "#ffffff",
-      info: "#ffffff",
+      // primary: "#ffffff",
+      // secondary: "#ffffff",
+      // info: "#ffffff",
     },
   },
   typography: {

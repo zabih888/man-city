@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   featuredNumber: {
     fontFamily: "Pacifico",
     fontSize: "270px",
-    color: `${theme.palette.secondary.main}`,
+    color: `${theme.palette.common.white}`,
     position: "absolute",
     [theme.breakpoints.down("sm")]: {
       display: "none",
