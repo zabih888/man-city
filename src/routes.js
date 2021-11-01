@@ -7,7 +7,8 @@ import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Dashboard from "./components/Admin/Dashboard";
+import AuthGuard from "./Hoc/Auth";
 
 
 const Routes = ({user}) => {
@@ -15,13 +16,15 @@ const Routes = ({user}) => {
     <Fragment>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Header user={user} />
+          {/* <Header user={user} /> */}
           <Switch>
-            <Route exact path="/sign-in" component={SignIn} />
+            <Route exact path="/dashboard" component={AuthGuard(Dashboard)} />
+            <Route exact path="/sign_in" component={
+              props => (<SignIn {...props} user={user} />)
+            } />
             <Route exact path="/" component={Home} />
             <Route exact path="/matches" component={() => <div>Matches</div>} />
             <Route exact path="/players" component={() => <div>Players</div>} />
-            <Route exact path="/dashboard" component={() => <div>Log</div>} />
           </Switch>
           <ToastContainer />
         </BrowserRouter>

@@ -32,83 +32,88 @@ const SignIn = (props) => {
     }),
     onSubmit: (values) => {
       setLoading(true);
-      submitForm(values)
+      submitForm(values);
     },
   });
 
   const submitForm = (values) => {
-    firebase.auth().signInWithEmailAndPassword(
-      values.email,
-      values.password
-    ).then(() => {
-      showSuccessToast("Welcom back")
-      props.history.push("./dashboard")
-    }).catch(error => {
-      setLoading(false)
-      showErrorToast(error.message)
-    })
-  }
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(values.email, values.password)
+      .then(() => {
+        showSuccessToast("Welcom back");
+        props.history.push("./dashboard");
+      })
+      .catch((error) => {
+        setLoading(false);
+        showErrorToast(error.message);
+      });
+  };
 
   return (
-    <Grid container>
-      <Grid
-        item
-        container
-        direction="column"
-        alignItems="center"
-        style={{ marginTop: "15rem" }}
-      >
-        <Box
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
-          }}
-          onSubmit={formik.handleSubmit}
-        >
-          <Grid item>
-            <TextField
-              label="Email"
-              variant="outlined"
-              name="email"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <div style={{ color: "red" }}>{formik.errors.email}</div>
-            ) : null}
+    <>
+      {!props.user ? (
+        <Grid container>
+          <Grid
+            item
+            container
+            direction="column"
+            alignItems="center"
+            style={{ marginTop: "15rem" }}
+          >
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1, width: "25ch" },
+              }}
+              onSubmit={formik.handleSubmit}
+            >
+              <Grid item>
+                <TextField
+                  label="Email"
+                  variant="outlined"
+                  name="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <div style={{ color: "red" }}>{formik.errors.email}</div>
+                ) : null}
+              </Grid>
+              <Grid item>
+                <TextField
+                  label="Password"
+                  variant="outlined"
+                  name="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                />
+                {formik.touched.password && formik.errors.password ? (
+                  <div style={{ color: "red" }}>{formik.errors.password}</div>
+                ) : null}
+              </Grid>
+              <Grid item textAlign="center">
+                {loading ? (
+                  <CircularProgress color="primary" />
+                ) : (
+                  <Button
+                    style={{ fontFamily: "Raleway", fontWeight: "bold" }}
+                    fullWidth="true"
+                    color="secondary"
+                    variant="contained"
+                    type="submit"
+                  >
+                    LogIn
+                  </Button>
+                )}
+              </Grid>
+            </Box>
           </Grid>
-          <Grid item>
-            <TextField
-              label="Password"
-              variant="outlined"
-              name="password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-            />
-            {formik.touched.password && formik.errors.password ? (
-              <div style={{ color: "red" }}>{formik.errors.password}</div>
-            ) : null}
-          </Grid>
-          <Grid item textAlign="center">
-            {loading ? (
-              <CircularProgress color="primary" />
-            ) : (
-              <Button
-                style={{ fontFamily: "Raleway", fontWeight: "bold" }}
-                fullWidth="true"
-                color="secondary"
-                variant="contained"
-                type="submit"
-              >
-                LogIn
-              </Button>
-            )}
-          </Grid>
-        </Box>
-      </Grid>
-    </Grid>
+        </Grid>
+      ) : <Redirect to={"/dashboard"} />}
+    </>
   );
 };
 export default SignIn;

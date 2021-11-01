@@ -23,8 +23,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { firebase } from "../../firebase";
-import { showErrorToast, showSuccessToast } from "../Utils/tools";
+import { logoutHandler } from "../Utils/tools";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -99,13 +98,28 @@ const Header = ({ user }) => {
       icon: <ListAltIcon />,
     },
     { name: "Players", link: "/players", activeIndex: 2, icon: <GroupIcon /> },
-
     // {
-    //   name: "dashboard",
+    //   name: "Dashboard",
     //   link: "/dashboard",
     //   activeIndex: 3,
     //   icon: <ExitToAppIcon />,
     // },
+  ];
+  const routesHasUser = [
+    { name: "Home", link: "/", activeIndex: 0, icon: <DashboardIcon /> },
+    {
+      name: "Matches",
+      link: "/matches",
+      activeIndex: 1,
+      icon: <ListAltIcon />,
+    },
+    { name: "Players", link: "/players", activeIndex: 2, icon: <GroupIcon /> },
+    {
+      name: "Dashboard",
+      link: "/dashboard",
+      activeIndex: 3,
+      icon: <ExitToAppIcon />,
+    },
   ];
   const classes = useStyles();
   const iOS =
@@ -122,17 +136,7 @@ const Header = ({ user }) => {
   const handleClick = () => {
     setOpenDrawer(!openDrawer);
   };
-  const logoutHandler = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        showSuccessToast("Good bye")
-      })
-      .catch((error) => {
-        showErrorToast(error.message)
-      });
-  };
+  
   const tabs = (
     <Tabs
       value={value}
@@ -142,31 +146,31 @@ const Header = ({ user }) => {
       aria-label="secondary tabs example"
       className={classes.tabContainer}
     >
-      {routes.map((route) => (
-        <Tab
-          label={route.name}
-          component={Link}
-          to={route.link}
-          key={`${route.name} ${route.activeIndex}`}
-          value={route.activeIndex}
-          className={classes.tabText}
-        />
-      ))}
-
+      {user
+        ? routesHasUser.map((route) => (
+            <Tab
+              label={route.name}
+              component={Link}
+              to={route.link}
+              key={`${route.name} ${route.activeIndex}`}
+              value={route.activeIndex}
+              className={classes.tabText}
+            />
+          ))
+        : routes.map((route) => (
+            <Tab
+              label={route.name}
+              component={Link}
+              to={route.link}
+              key={`${route.name} ${route.activeIndex}`}
+              value={route.activeIndex}
+              className={classes.tabText}
+            />
+          ))}
       {user ? (
-        <>
-          <Tab
-            label="dashboard"
-            to="/dashboard"
-            value={3}
-            component={Link}
-            key="dasboard 3"
-            className={classes.tabText}
-          />
-          <Button onClick={logoutHandler} variant="contained" color="secondary">
-            logOut
-          </Button>
-        </>
+        <Button onClick={logoutHandler} variant="contained" color="secondary">
+          logOut
+        </Button>
       ) : undefined}
     </Tabs>
   );
@@ -181,14 +185,34 @@ const Header = ({ user }) => {
     >
       <div className={classes.toolbarMargin} />
       <List>
-        {routes.map((route) => (
-          <ListItem divider button>
-            <ListItemIcon className={classes.listItemIcon}>
-              {route.icon}
-            </ListItemIcon>
-            <ListItemText>{route.name}</ListItemText>
-          </ListItem>
-        ))}
+        {user
+          ? routesHasUser.map((route) => (
+              <ListItem to={route.link} component={Link} divider button>
+                <ListItemIcon className={classes.listItemIcon}>
+                  {route.icon}
+                </ListItemIcon>
+                <ListItemText>{route.name}</ListItemText>
+              </ListItem>
+            ))
+          : routes.map((route) => (
+              <ListItem to={route.link} component={Link} divider button>
+                <ListItemIcon className={classes.listItemIcon}>
+                  {route.icon}
+                </ListItemIcon>
+                <ListItemText>{route.name}</ListItemText>
+              </ListItem>
+            ))}
+        {user ? (
+          <Button
+            onClick={logoutHandler}
+            variant="contained"
+            color="secondary"
+            fullWidth
+            style={{ padding: "1rem", borderRadius: "0" }}
+          >
+            logOut
+          </Button>
+        ) : undefined}
       </List>
     </SwipeableDrawer>
   );
