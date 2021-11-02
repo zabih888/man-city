@@ -5,7 +5,7 @@ const Dashboard = (props) => {
     return (
         <AdminLayout>
             <div style={{marginTop: "10rem"}} />
-            <div>This is your dashboard</div>
+            <h1>This is your dashboard</h1>
         </AdminLayout>
       );
 }

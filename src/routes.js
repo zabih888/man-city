@@ -16,7 +16,7 @@ const Routes = ({user}) => {
     <Fragment>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          {/* <Header user={user} /> */}
+          <Header user={user} />
           <Switch>
             <Route exact path="/dashboard" component={AuthGuard(Dashboard)} />
             <Route exact path="/sign_in" component={
