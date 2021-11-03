@@ -32,6 +32,16 @@ const theme = createTheme({
       padding: "0px 20px",
       fontWeight: 600,
     },
+    h4: {
+      fontFamily: "Raleway",
+      color: arcWhite,
+      fontWeight: 600,
+    },
+    h6: {
+      fontFamily: "Raleway",
+      color: arcWhite,
+      fontWeight: 600,
+    }
   },
 });
 export default theme;

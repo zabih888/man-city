@@ -1,14 +1,17 @@
 // import { useTheme } from '@emotion/react'
-import React from 'react'
-import Featured from './featured'
+import React from "react";
+import Featured from "./featured";
+import MatchesHome from "./matches";
 
 const Home = () => {
-    // const theme = useTheme()
-    return (
-        <div style={{background:"#0d1831", overflow: "hidden"}}>
-           <Featured /> 
-        </div>
-    )
-}
+  return (
+    <div>
+      <div style={{ background: "#0d1831", overflowX: "hidden" }}>
+        <Featured />
+      </div>
+      <MatchesHome />
+    </div>
+  );
+};
 
-export default Home
+export default Home;

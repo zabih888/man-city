@@ -11,13 +11,14 @@ const useStyles = makeStyles({
     margin: "0 auto",
     marginTop: "90px",
     height: "800px",
-    overflow: "hidden",
+    overflow: "hidden !important",
   },
 });
+
 const Featured = () => {
   const classes = useStyles();
   return (
-    <Grid className={classes.featuredWrapper}>
+    <Grid className={classes.featuredWrapper} >
       <Stripes />
       <Text />
     </Grid>

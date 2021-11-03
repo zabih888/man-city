@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "60px",
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize: "40px",
+      fontSize: "35px",
     },
   },
   featuredPlayer: {
@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
       height: "400px",
     },
     [theme.breakpoints.down("sm")]: {
-      width: "380px ",
-      height: "380px",
+      width: "360px ",
+      height: "360px",
     },
   },
   featuredText: {
@@ -190,7 +190,7 @@ const Text = () => {
             opacity,
             background: `url(${FeaturedPlayer})`,
             transform: matchesSM
-              ? "translate(30px, 201px)"
+              ? "translate(10px, 201px)"
               : matchesMD
               ? "translate(200px, 201px)"
               : matchesLG

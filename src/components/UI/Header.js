@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "2.3rem",
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize: "1.8rem",
+      fontSize: "2rem",
     },
   },
   tabContainer: {
@@ -229,7 +229,7 @@ const Header = ({ user }) => {
         >
           <Toolbar>
             <img src={logo} className={classes.logo} />
-            <h1 className={classes.logoText}>Manchester City</h1>
+            <h1 className={classes.logoText}>Man City</h1>
             {matchesMD ? drawer : tabs}
             {matchesMD ? (
               <IconButton
