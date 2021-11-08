@@ -16,7 +16,7 @@ import {
   useMediaQuery,
   Button,
 } from "@mui/material";
-import logo from "../images/logos/manchester_city_logo.png";
+import logo from "../../images/logos/manchester_city_logo.png";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import GroupIcon from "@mui/icons-material/Group";
@@ -75,6 +75,14 @@ const useStyles = makeStyles((theme) => ({
   listItemIcon: {
     color: `${theme.palette.secondary.main} !important`,
   },
+  logOutButton: {
+    marginLeft: "20px !important",
+    ...theme.typography.darkButton,
+    "&:hover": {
+      backgroundColor: `${theme.palette.common.white} !important`,
+      color: `${theme.palette.secondary.main} !important`,
+    },
+  },
 }));
 
 function ElevationScroll(props) {
@@ -98,12 +106,6 @@ const Header = ({ user }) => {
       icon: <ListAltIcon />,
     },
     { name: "Players", link: "/players", activeIndex: 2, icon: <GroupIcon /> },
-    // {
-    //   name: "Dashboard",
-    //   link: "/dashboard",
-    //   activeIndex: 3,
-    //   icon: <ExitToAppIcon />,
-    // },
   ];
   const routesHasUser = [
     { name: "Home", link: "/", activeIndex: 0, icon: <DashboardIcon /> },
@@ -136,7 +138,7 @@ const Header = ({ user }) => {
   const handleClick = () => {
     setOpenDrawer(!openDrawer);
   };
-  
+
   const tabs = (
     <Tabs
       value={value}
@@ -168,7 +170,11 @@ const Header = ({ user }) => {
             />
           ))}
       {user ? (
-        <Button onClick={logoutHandler} variant="contained" color="secondary">
+        <Button
+          className={classes.logOutButton}
+          onClick={logoutHandler}
+          variant="contained"
+        >
           logOut
         </Button>
       ) : undefined}
@@ -217,6 +223,33 @@ const Header = ({ user }) => {
     </SwipeableDrawer>
   );
 
+  useEffect(() => {
+    routes.forEach((route) => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if (value !== route.activeIndex) {
+            setValue(route.activeIndex);
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [value, routes]);
+  useEffect(() => {
+    routesHasUser.forEach((route) => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if (value !== route.activeIndex) {
+            setValue(route.activeIndex);
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [value, routes]);
+
   return (
     <Fragment>
       <ElevationScroll>
@@ -228,7 +261,9 @@ const Header = ({ user }) => {
           }}
         >
           <Toolbar>
-            <img src={logo} className={classes.logo} />
+            <Link to="/">
+              <img src={logo} className={classes.logo} />
+            </Link>
             <h1 className={classes.logoText}>Man City</h1>
             {matchesMD ? drawer : tabs}
             {matchesMD ? (
@@ -242,7 +277,6 @@ const Header = ({ user }) => {
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      {/* <div className={classes.toolbarMargin} />s */}
     </Fragment>
   );
 };

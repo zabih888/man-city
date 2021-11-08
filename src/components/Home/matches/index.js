@@ -6,6 +6,8 @@ import Blocks from "./Blocks";
 
 const useStyles = makeStyles((theme) => ({
   topMatchesTitle: {
+    color: `${theme.palette.common.white} !important`,
+    fontSize: "4rem !important",
     paddingTop: "1rem !important",
     paddingLeft: "11rem",
     [theme.breakpoints.down("lg")]: {
@@ -25,6 +27,7 @@ const MatchesHome = () => {
       style={{
         minHeight: "800px",
         backgroundColor: `${theme.palette.primary.main}`,
+        paddingBottom: "4rem"
       }}
     >
       <div
@@ -35,11 +38,11 @@ const MatchesHome = () => {
           height: matchesSM ? "1rem" : "3rem",
         }}
       ></div>
-      <Typography variant="h4" className={classes.topMatchesTitle}> Matches</Typography>
+      <Typography variant="h1" className={classes.topMatchesTitle}> Matches</Typography>
       <Blocks />
-      <Typography style={{ textAlign: "center" }} variant="h4">
+      {/* <Typography style={{ textAlign: "center" }} variant="h4">
         matches
-      </Typography>
+      </Typography> */}
     </div>
   );
 };

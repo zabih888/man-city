@@ -4,3 +4,7 @@
     outline: 0;
     overflow-x: hidden !important;
 }
+
+.home_meetplayers { 
+    background: url("/src/images/main/stripes.png");
+}

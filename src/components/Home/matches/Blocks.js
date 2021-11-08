@@ -31,7 +31,12 @@ const Blocks = () => {
   const showMatches = () =>
     matches
       ? matches.map((match) => (
-          <Slide bottom key={match.id} style={{ width: matchesSM ? "100%" : "50%" }} triggerOnce>
+          <Slide
+            bottom
+            key={match.id}
+            style={{ width: matchesSM ? "100%" : "50%" }}
+            triggerOnce
+          >
             <div>
               <div style={{ display: "flex" }}>
                 <MatchesBlock match={match} />
@@ -45,7 +50,11 @@ const Blocks = () => {
       style={{
         display: "flex",
         flexWrap: "wrap",
-        margin:matchesMD ? "2rem 1rem " :  matchesLG ? "2rem 7rem " : "2rem 10rem",
+        margin: matchesMD
+          ? "2rem 1rem "
+          : matchesLG
+          ? "2rem 7rem "
+          : "2rem 10rem",
       }}
     >
       {showMatches(matches)}

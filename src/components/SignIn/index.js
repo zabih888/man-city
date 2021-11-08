@@ -12,11 +12,19 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
-import { showErrorToast, showSuccessToast } from "../Utils/tools";
+import { showErrorToast, showSuccessToast, textErrorHelper } from "../Utils/tools";
+import theme from "../UI/Theme";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  signInButton: {
+    ...theme.typography.lightBlue,
+    "&:hover": {
+      backgroundColor: `${theme.palette.primary.light} !important`,
+    },
+  },
+}));
 const SignIn = (props) => {
-  // const classes = useStyles();
+  const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -76,10 +84,8 @@ const SignIn = (props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
+                  {...textErrorHelper(formik, "email")}
                 />
-                {formik.touched.email && formik.errors.email ? (
-                  <div style={{ color: "red" }}>{formik.errors.email}</div>
-                ) : null}
               </Grid>
               <Grid item>
                 <TextField
@@ -89,21 +95,19 @@ const SignIn = (props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
+                  {...textErrorHelper(formik, "password")}
                 />
-                {formik.touched.password && formik.errors.password ? (
-                  <div style={{ color: "red" }}>{formik.errors.password}</div>
-                ) : null}
               </Grid>
               <Grid item textAlign="center">
                 {loading ? (
                   <CircularProgress color="primary" />
                 ) : (
                   <Button
-                    style={{ fontFamily: "Raleway", fontWeight: "bold" }}
+                    className={classes.signInButton}
                     fullWidth="true"
-                    color="secondary"
                     variant="contained"
                     type="submit"
+                    disabled={ formik.errors.email || formik.errors.password ? true : false}
                   >
                     LogIn
                   </Button>
@@ -112,7 +116,9 @@ const SignIn = (props) => {
             </Box>
           </Grid>
         </Grid>
-      ) : <Redirect to={"/dashboard"} />}
+      ) : (
+        <Redirect to={"/dashboard"} />
+      )}
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { palette } from "@mui/system";
 
 const arcLightBlue = "#98c5e9";
 const arcBlue = "#0d1831";
@@ -31,6 +32,10 @@ const theme = createTheme({
       textTransform: "uppercase",
       padding: "0px 20px",
       fontWeight: 600,
+    },  
+    h1: {
+      fontFamily: "Raleway",
+      fontWeight: 600,
     },
     h4: {
       fontFamily: "Raleway",
@@ -41,7 +46,19 @@ const theme = createTheme({
       fontFamily: "Raleway",
       color: arcWhite,
       fontWeight: 600,
-    }
+    },
+    lightButton: {
+      backgroundColor: arcLightBlue,
+      fontFamily: "Raleway",
+      borderRadius: "0px !important",
+    },
+    darkButton: {
+      backgroundColor: `${arcBlue} !important`,
+      color:`${arcWhite} !important`,
+      fontFamily: "Raleway",
+      borderRadius: "0px !important",
+    },
+    
   },
 });
 export default theme;

@@ -1,7 +1,7 @@
 import React from "react";
 import { easePolyOut } from "d3-ease";
 import { Animate } from "react-move";
-import FeaturedPlayer from "../../images/main/featured_player.png";
+import FeaturedPlayer from "../../../images/main/featured_player.png";
 import { makeStyles } from "@mui/styles";
 import theme from "../../UI/Theme";
 import { useMediaQuery } from "@mui/material";

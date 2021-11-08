@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import "firebase/compat/storage"
 
 // import { cityDb } from "./temp/m-city-export";
 
@@ -24,6 +25,7 @@ const playersCollection = DB.collection("players");
 const positionsCollection = DB.collection("positions");
 const promotionsCollection = DB.collection("promotions");
 const teamsCollection = DB.collection("teams");
+
 
 // cityDb.matches.forEach((item) => {
 //   matchesCollection.add(item);
@@ -51,5 +53,5 @@ export {
   playersCollection,
   positionsCollection,
   promotionsCollection,
-  teamsCollection
+  teamsCollection,
 };

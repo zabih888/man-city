@@ -45,7 +45,12 @@ const MatchesBlock = ({ match }) => {
       container
       textAlign="center"
       item
-      style={{ display: "flex", background: "#fff", margin: "1rem" , boxShadow: "0px 10px 13px -10px #000000"}}
+      style={{
+        display: "flex",
+        background: "#fff",
+        margin: "1rem",
+        boxShadow: "0px 10px 13px -10px #000000",
+      }}
     >
       <Grid container justifyContent="space-evenly">
         <Grid item container justifyContent="flex-end" xs={3.5}>
@@ -84,6 +89,7 @@ const MatchesBlock = ({ match }) => {
         </Grid>
       </Grid>
     </Grid>
+
   );
 };
 
