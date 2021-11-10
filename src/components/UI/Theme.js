@@ -42,6 +42,12 @@ const theme = createTheme({
       color: arcWhite,
       fontWeight: 600,
     },
+    // subtitle1 is the all of subtitle in AddEdit Match/Player
+    subtitle1: {
+      fontFamily: "Raleway",
+      fontWeight: 600,
+      margin: ".8rem 0"
+    },
     h6: {
       fontFamily: "Raleway",
       color: arcWhite,

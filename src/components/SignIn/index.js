@@ -3,8 +3,12 @@ import { firebase } from "../../firebase";
 import {
   Button,
   CircularProgress,
+  FormControl,
   Grid,
-  Input,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
   TextField,
 } from "@mui/material";
 import { Redirect } from "react-router";
@@ -12,8 +16,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
-import { showErrorToast, showSuccessToast, textErrorHelper } from "../Utils/tools";
+import {
+  selectIsError,
+  showErrorToast,
+  showSuccessToast,
+  textErrorHelper,
+} from "../Utils/tools";
 import theme from "../UI/Theme";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   signInButton: {
@@ -26,17 +36,18 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = (props) => {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const formik = useFormik({
     initialValues: {
-      email: "francis@gmail.com",
-      password: "testing123",
+      email: "",
+      password: "",
     },
     validationSchema: Yup.object({
       email: Yup.string()
         .email("Invalid email address")
         .required("The email is required"),
 
-      password: Yup.string().required("The email is required"),
+      password: Yup.string().required("The password is required"),
     }),
     onSubmit: (values) => {
       setLoading(true);
@@ -56,6 +67,9 @@ const SignIn = (props) => {
         setLoading(false);
         showErrorToast(error.message);
       });
+  };
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -81,22 +95,47 @@ const SignIn = (props) => {
                   label="Email"
                   variant="outlined"
                   name="email"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.email}
+                  {...formik.getFieldProps("email")}
                   {...textErrorHelper(formik, "email")}
                 />
               </Grid>
               <Grid item>
-                <TextField
-                  label="Password"
-                  variant="outlined"
-                  name="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                  {...textErrorHelper(formik, "password")}
-                />
+                <FormControl variant="outlined">
+                  <InputLabel error={selectIsError(formik, "password")}>
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    type={showPassword ? "text" : "password"}
+                    {...formik.getFieldProps("password")}
+                    {...textErrorHelper(formik, "password")}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={handleClickShowPassword}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                  ></OutlinedInput>
+                  {formik.errors.password && formik.touched.password ? (
+                    <div
+                      style={{
+                        color: "#d32f2f",
+                        fontWeight: 400,
+                        fontSize: "0.75rem",
+                        lineHeight: 1.66,
+                        fontFamily: "Roboto",
+                        padding: "3px 14px 0 14px",
+                        textAlign: "left"
+                      }}
+                    >
+                      The password is required
+                    </div>
+                  ) : null}
+                </FormControl>
               </Grid>
               <Grid item textAlign="center">
                 {loading ? (
@@ -107,7 +146,11 @@ const SignIn = (props) => {
                     fullWidth="true"
                     variant="contained"
                     type="submit"
-                    disabled={ formik.errors.email || formik.errors.password ? true : false}
+                    disabled={
+                      formik.errors.email || formik.errors.password
+                        ? true
+                        : false
+                    }
                   >
                     LogIn
                   </Button>

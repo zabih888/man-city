@@ -3,7 +3,7 @@ import React from "react";
 import AdminNav from "../components/Admin/nav/AdminNav";
 import theme from "../components/UI/Theme";
 
-const AdminLayout = (props) => {
+const AdminLayout = ({title, children}) => {
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Grid container>
@@ -27,9 +27,9 @@ const AdminLayout = (props) => {
             color: `${theme.palette.secondary.main}`,
           }}
         >
-          {props.title}
+          {title}
         </Typography>
-        {props.children}
+        {children}
       </Grid>
     </Grid>
   );

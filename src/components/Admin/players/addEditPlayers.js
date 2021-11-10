@@ -13,6 +13,7 @@ import {
   Button,
   FormControl,
   Grid,
+  InputLabel,
   MenuItem,
   Select,
   TextField,
@@ -20,7 +21,6 @@ import {
 import { playersCollection, firebase } from "../../../firebase";
 import { makeStyles } from "@mui/styles";
 import theme from "../../UI/Theme";
-import FileUploader from "../../Utils/fileUploader";
 
 const useStyles = makeStyles({
   addPlayerButton: {
@@ -31,12 +31,10 @@ const useStyles = makeStyles({
   },
 });
 const defaultValues = {
-  image: "",
   name: "",
   lastName: "",
   number: "",
   position: "",
-  image: "",
 };
 
 const AddEditPlayers = (props) => {
@@ -44,7 +42,6 @@ const AddEditPlayers = (props) => {
   const [loading, setLoading] = useState(false);
   const [formType, setFormType] = useState("");
   const [values, setValues] = useState(defaultValues);
-  const [defaultImg, setDefaultImg] = useState("")
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -57,7 +54,6 @@ const AddEditPlayers = (props) => {
         .min(0, "This min is zero")
         .max(100, "This max is 100"),
       position: Yup.string().required("This input is required"),
-      image: Yup.string().required("This input is required"),
     }),
     onSubmit: (values) => {
       submitForm(values);
@@ -103,17 +99,6 @@ const AddEditPlayers = (props) => {
         .get()
         .then((snapshot) => {
           if (snapshot.data()) {
-        
-            firebase
-              .storage()
-              .ref('players')
-              .child(snapshot.data().image)
-              .getDownloadURL()
-              .then((url) => {
-                updateImageName(snapshot.data().image)
-                setDefaultImg(url)
-              });
-
             setFormType("edit");
             setValues(snapshot.data());
           } else {
@@ -129,29 +114,10 @@ const AddEditPlayers = (props) => {
     }
   }, [props.match.params.playerid]);
 
-  const updateImageName = (filename) => {
-    formik.setFieldValue("image", filename)
-  }
-  const restImage = () => {
-    formik.setFieldValue("image", "");
-    setDefaultImg("")
-  }
   return (
     <AdminLayout title={formType === "add" ? "Add players" : "Edit players"}>
       <div>
         <form onSubmit={formik.handleSubmit}>
-          <FormControl error={selectIsError(formik, "image")}>
-            <FileUploader
-              dir="players"
-              defaultImg={defaultImg}
-              defaultImgName={formik.values.image}
-              filename={(filename) => updateImageName(filename)}
-              restImage={() => restImage()}
-            >
-              <img src={defaultImg} />
-            </FileUploader>
-            {selectErrorHelper(formik, "image")}
-          </FormControl>
           <hr />
           <h4>Player info</h4>
           <Grid container direction="column" gap={1.5}>
@@ -187,18 +153,17 @@ const AddEditPlayers = (props) => {
               />
             </div>
             <FormControl error={selectIsError(formik, "position")}>
+              <InputLabel>Selected</InputLabel>
               <Select
-                style={{ width: "210px" }}
+                style={{ width: "210px"}}
                 id="position"
                 name="position"
                 variant="outlined"
+                label="Selected"
                 displayEmpty
                 placeholder="Add position"
                 {...formik.getFieldProps("position")}
               >
-                <MenuItem value="" disabled>
-                  Selected
-                </MenuItem>
                 <MenuItem value="Keeper">Keeper</MenuItem>
                 <MenuItem value="Defence">Defence</MenuItem>
                 <MenuItem value="Midfield">Midfield</MenuItem>
@@ -212,7 +177,7 @@ const AddEditPlayers = (props) => {
             variant="contained"
             disabled={loading}
             className={classes.addPlayerButton}
-            style={{ marginTop: "1rem" }}
+            style={{ marginTop: "1rem" , marginBottom: "20rem"}}
             disabled={
               formik.errors.name ||
               formik.errors.lastName ||
