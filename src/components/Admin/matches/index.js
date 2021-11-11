@@ -137,10 +137,11 @@ const AdminMatches = () => {
         onClick={loadMoreMatches}
         variant="contained"
         className={classes.loadMoreButton}
+        
       >
         LoadMore
       </Button>
-      <div>{loading ? <CircularProgress thickness={7} /> : null}</div>
+      <div style={{marginBottom: "22rem"}}>{loading ? <CircularProgress thickness={7} /> : null}</div>
     </AdminLayout>
   );
 };

@@ -14,6 +14,7 @@ const Dashboard = (props) => {
           fontWeight: "900",
           color: `${theme.palette.primary.light}`,
           opacity: ".7",
+          minHeight: "100vh"
         }}
       >
         This is your dashboard

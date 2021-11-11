@@ -116,7 +116,7 @@ const AdminPlayers = () => {
         </Table>
       </Paper>
       <Button onClick={loadMorePlayers} variant="contained" className={classes.loadMoreButton}>LoadMore</Button>
-      <div>{loading ? <CircularProgress thickness={7} /> : null}</div>
+      <div style={{marginBottom: "22rem"}}>{loading ? <CircularProgress thickness={7} /> : null}</div>
     </AdminLayout>
   )
 }

@@ -81,7 +81,7 @@ const SignIn = (props) => {
             container
             direction="column"
             alignItems="center"
-            style={{ marginTop: "15rem" }}
+            style={{ margin: "17rem 0" }}
           >
             <Box
               component="form"
@@ -141,6 +141,7 @@ const SignIn = (props) => {
                 {loading ? (
                   <CircularProgress color="primary" />
                 ) : (
+                  <>
                   <Button
                     className={classes.signInButton}
                     fullWidth="true"
@@ -154,6 +155,8 @@ const SignIn = (props) => {
                   >
                     LogIn
                   </Button>
+                 
+                  </>
                 )}
               </Grid>
             </Box>

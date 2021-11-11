@@ -24,6 +24,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { logoutHandler } from "../Utils/tools";
+import { Login } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -78,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
   logOutButton: {
     marginLeft: "20px !important",
     ...theme.typography.darkButton,
+    borderRadius: "12px !important",
     "&:hover": {
       backgroundColor: `${theme.palette.common.white} !important`,
       color: `${theme.palette.secondary.main} !important`,
@@ -101,28 +103,28 @@ const Header = ({ user }) => {
     { name: "Home", link: "/", activeIndex: 0, icon: <DashboardIcon /> },
     {
       name: "Matches",
-      link: "/matches",
+      link: "/the_matches",
       activeIndex: 1,
       icon: <ListAltIcon />,
     },
-    { name: "Players", link: "/players", activeIndex: 2, icon: <GroupIcon /> },
+    {name: "Sign In", link: "/sign_in", icon: <Login /> },
   ];
   const routesHasUser = [
     { name: "Home", link: "/", activeIndex: 0, icon: <DashboardIcon /> },
     {
       name: "Matches",
-      link: "/matches",
+      link: "/the_matches",
       activeIndex: 1,
       icon: <ListAltIcon />,
     },
-    { name: "Players", link: "/players", activeIndex: 2, icon: <GroupIcon /> },
     {
       name: "Dashboard",
       link: "/dashboard",
-      activeIndex: 3,
+      activeIndex: 2,
       icon: <ExitToAppIcon />,
     },
   ];
+  
   const classes = useStyles();
   const iOS =
     typeof navigator !== "undefined" &&
@@ -138,6 +140,33 @@ const Header = ({ user }) => {
   const handleClick = () => {
     setOpenDrawer(!openDrawer);
   };
+
+  useEffect(() => {
+    routes.forEach((route) => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if (value !== route.activeIndex) {
+            setValue(route.activeIndex);
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [value, routes]);
+  useEffect(() => {
+    routesHasUser.forEach((route) => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if (value !== route.activeIndex) {
+            setValue(route.activeIndex);
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [value, routesHasUser]);
 
   const tabs = (
     <Tabs
@@ -223,33 +252,6 @@ const Header = ({ user }) => {
     </SwipeableDrawer>
   );
 
-  useEffect(() => {
-    routes.forEach((route) => {
-      switch (window.location.pathname) {
-        case `${route.link}`:
-          if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
-          }
-          break;
-        default:
-          break;
-      }
-    });
-  }, [value, routes]);
-  useEffect(() => {
-    routesHasUser.forEach((route) => {
-      switch (window.location.pathname) {
-        case `${route.link}`:
-          if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
-          }
-          break;
-        default:
-          break;
-      }
-    });
-  }, [value, routes]);
-
   return (
     <Fragment>
       <ElevationScroll>
@@ -261,7 +263,7 @@ const Header = ({ user }) => {
           }}
         >
           <Toolbar>
-            <Link to="/">
+            <Link to="/" >
               <img src={logo} className={classes.logo} />
             </Link>
             <h1 className={classes.logoText}>Man City</h1>
