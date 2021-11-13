@@ -8,12 +8,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fff",
     border: "2px solid #ececec ",
     padding: "10px 10px 20px 10px",
+    
     width: "300px",
     [theme.breakpoints.down("md")]: {
       widht: "220px !important",
     },
     [theme.breakpoints.down("sm")]: {
-      widht: "200px !important",
+      widht: "170px !important",
+      padding: "5px",
     },
   },
   playerCardThmb: {

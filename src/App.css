@@ -1,25 +1,116 @@
-*::before, *::after, body{
-    padding: 0;
-    margin: 0;
-    outline: 0;
-    overflow-x: hidden !important;
-    box-sizing: border-box;
+*::before,
+*::after,
+body {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
+}
+/* the second featcher in home => CHANMPIONSHIPS <= */
+.featuredSecond {
+  font-family: "Raleway";
+  position: absolute;
+  background: #0d1831;
+  color: #ffffff;
+  font-size: 92px;
+  text-transform: uppercase;
+  padding: 0 20px;
+  font-weight: 600;
+}
+.featuredPlayer{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+
+}
+.containerImageJersey{
+    width: 350px;
+    height: 350px;
+    background-size: cover !important;
+    background-position: cover !important;
+    background-image: url("/src/images/main/jersey.jpg");
+    margin-right: 11rem;
+}
+.teamNameTheMatches{
+    font-family: Raleway;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    color: #0d1831;
+}
+@media only screen and (max-width: 1200px) {
+    .featuredSecond{
+        font-size: 80px;
+    }
+    .containerImageJersey{
+        margin-right: 8rem;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .featuredSecond{
+        font-size: 60px;
+    }
+    .featuredPlayer{
+        width: 400px;
+        height: 400px;
+    }
+    .containerImageJersey{
+        margin-right: 3rem;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .featuredSecond{
+        font-size: 45px;
+    }
+    .containerImageJersey{
+        margin-right: 0rem;
+    }
+    .teamNameTheMatches{
+        font-size: .9rem;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .featuredSecond{
+        font-size: 33px;
+    }
+    .featuredPlayer{
+        width: 370px;
+        height: 330px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .featuredSecond{
+        font-size: 28px;
+    }
+    .featuredPlayer{
+        width: 340px;
+        height: 280px;
+    }
+    .containerImageJersey{
+        width: 330px;
+        height: 330px;
+    }
+    .teamNameTheMatches{
+        font-size: .7rem;
+    }
 }
 
-.home_meetplayers { 
-    background: url("/src/images/main/stripes.png");
+.home_meetplayers {
+  background: url("/src/images/main/stripes.png");
 }
 .option {
-    background: #ffffff;
-    padding: 5px 9px;
-    border-radius: 3px;
-    font-size: 13px;
-    margin-right: 5px;
-    cursor: pointer;
-    font-family: "Raleway";
+  background: #ffffff;
+  padding: 5px 9px;
+  border-radius: 3px;
+  font-size: 13px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-family: "Raleway";
 }
 
 .option.active {
-    background: #62a2d3;
-    color: #fff;
+  background: #62a2d3;
+  color: #fff;
 }

@@ -17,15 +17,6 @@ const useStyles = makeStyles((theme) => ({
     height: "50px !important",
     backgroundSize: "cover !important",
   },
-  teamName: {
-    fontFamily: "Raleway",
-    fontSize: "1.2rem",
-    margin: " 0 10px",
-    color: `${theme.palette.secondary.main} !important`,
-    [theme.breakpoints.down("sm")]: {
-      fontSize: ".9rem"
-    },
-  },
   teamReasult: {
     fontFamily: "Pacifico",
     fontSize: "1.3rem",
@@ -70,6 +61,7 @@ const MatchesList = (props) => {
               <Grid
                 container
                 justifyContent="space-between"
+                alignItems="center"
                 key={key}
                 className={classes.matchBoxBig}
                 style={{
@@ -85,7 +77,7 @@ const MatchesList = (props) => {
                         background: `url(/images/team_icon/${data.localThmb}.png)`,
                       }}
                     ></div>
-                    <div className={classes.teamName}>{data.local}</div>
+                    <div className="teamNameTheMatches">{data.local}</div>
                     <div className={classes.teamReasult}>
                       {data.resultLocal}
                     </div>
@@ -97,21 +89,21 @@ const MatchesList = (props) => {
                         background: `url(/images/team_icon/${data.awayThmb}.png)`,
                       }}
                     ></div>
-                    <div className={classes.teamName}>{data.away}</div>
+                    <div className="teamNameTheMatches">{data.away}</div>
                     <div className={classes.teamReasult}>{data.resultAway}</div>
                   </div>
                 </Grid>
-                <Grid item className="block_wraper nfo">
-                  <div className={classes.teamReasult}>
-                    <strong className={classes.teamName}>Date:</strong>
+                <Grid item>
+                  <div className="teamNameTheMatches">
+                    <strong className="teamNameTheMatches">Date:</strong>
                     {data.date}
                   </div>
                   <div className={classes.stadiumAnswer}>
-                    <strong className={classes.teamName}>Stadium:</strong>
+                    <strong className="teamNameTheMatches">Stadium:</strong>
                     {data.stadium}
                   </div>
                   <div className={classes.stadiumAnswer}>
-                    <strong className={classes.teamName}>Referee:</strong>
+                    <strong className="teamNameTheMatches">Referee:</strong>
                     {data.referee}
                   </div>
                 </Grid>

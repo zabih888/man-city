@@ -19,33 +19,33 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "50px",
     },
   },
-  featuredSecond: {
-    ...theme.typography.homeText,
-    [theme.breakpoints.down("lg")]: {
-      fontSize: "80px",
-    },
-    [theme.breakpoints.down("md")]: {
-      fontSize: "60px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "35px",
-    },
-  },
-  featuredPlayer: {
-    width: "500px ",
-    height: "500px",
-    position: "absolute",
-    backgroundRepeat: "no-repeat !important",
-    backgroundSize: "contain !important",
-    [theme.breakpoints.down("md")]: {
-      width: "400px ",
-      height: "400px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      width: "360px ",
-      height: "360px",
-    },
-  },
+  // featuredSecond: {
+  //   ...theme.typography.homeText,
+  //   [theme.breakpoints.down("lg")]: {
+  //     fontSize: "80px",
+  //   },
+  //   [theme.breakpoints.down("md")]: {
+  //     fontSize: "60px",
+  //   },
+  //   [theme.breakpoints.down("sm")]: {
+  //     fontSize: "45px",
+  //   },
+  // },
+  // featuredPlayer: {
+  //   width: "500px ",
+  //   height: "500px",
+  //   position: "absolute",
+  //   backgroundRepeat: "no-repeat !important",
+  //   backgroundSize: "contain !important",
+  //   [theme.breakpoints.down("md")]: {
+  //     width: "400px ",
+  //     height: "400px",
+  //   },
+  //   [theme.breakpoints.down("sm")]: {
+  //     width: "360px ",
+  //     height: "360px",
+  //   },
+  // },
   featuredText: {
     position: "relative",
   },
@@ -64,7 +64,7 @@ const Text = () => {
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-
+ 
   const animateNumber = () => (
     <Animate
       show={true}
@@ -158,7 +158,8 @@ const Text = () => {
     >
       {({ opacity, x, y, xM, yM, xL, xS }) => (
         <div
-          className={classes.featuredSecond}
+          // className={classes.featuredSecond}
+          className="featuredSecond"
           style={{
             opacity,
             transform: `translate(${
@@ -185,7 +186,7 @@ const Text = () => {
     >
       {({ opacity }) => (
         <div
-          className={classes.featuredPlayer}
+          className="featuredPlayer"
           style={{
             opacity,
             background: `url(${FeaturedPlayer})`,

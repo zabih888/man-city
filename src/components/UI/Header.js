@@ -29,9 +29,9 @@ import { Login } from "@mui/icons-material";
 const useStyles = makeStyles((theme) => ({
   logo: {
     height: "5em",
-    // [theme.breakpoints.down("sm")]: {
-    //   height: "4em",
-    // },
+    [theme.breakpoints.only("xs")]: {
+      height: "4.4em",
+    },
   },
   logoText: {
     fontWeight: 800,
@@ -42,8 +42,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       fontSize: "2.3rem",
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.only("sm")]: {
       fontSize: "2rem",
+    },
+    [theme.breakpoints.only("xs")]: {
+      fontSize: "1.6rem",
     },
   },
   tabContainer: {

@@ -21,24 +21,7 @@ const useStyles = makeStyles((theme) => ({
       margin: "1rem 0 !important",
     },
   },
-  containerImg: {
-    width: "350px !important",
-    height: "500px !important",
-    backgroundSize: "cover !important",
-    backgroundPosition: "center !important",
-    backgroundImage: `url(${jersey})`,
-    marginRight: "11rem ",
-    [theme.breakpoints.down("lg")]: {
-      marginRight: "8rem !important",
-    },
-    [theme.breakpoints.down("md")]: {
-      marginRight: "3rem !important",
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginRight: "0rem !important",
-      marginBottom: "2rem",
-    },
-  },
+
 }));
 
 const Animation = () => {
@@ -60,7 +43,7 @@ const Animation = () => {
       <Grid item xs={12} md={6}>
         <Zoom triggerOnce>
           <Grid container justifyContent={matchesSM ? "center" : "flex-end"}>
-            <div className={classes.containerImg} />
+            <div className="containerImageJersey" />
           </Grid>
         </Zoom>
       </Grid>

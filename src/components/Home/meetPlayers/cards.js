@@ -11,23 +11,23 @@ import theme from "../../UI/Theme";
 
 const HomeCards = (props) => {
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
-  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
-  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesMD = useMediaQuery(theme.breakpoints.only("sm"));
+  const matchesSM = useMediaQuery(theme.breakpoints.only("xs"));
 
   let cards = [
     {
       bottom: 90,
-      left: matchesSM ? [40] : matchesMD ? [60] : [140],
+      left: matchesSM ? [0] : matchesMD ? [60] : [140],
       player: Kompany,
     },
     {
       bottom: 60,
-      left: matchesSM ? [30] : matchesMD ? [40] : [110],
+      left: matchesSM ? [0] : matchesMD ? [40] : [110],
       player: Sterling,
     },
     {
       bottom: 30,
-      left: matchesSM ? [20] : matchesMD ? [20] : [80], 
+      left: matchesSM ? [0] : matchesMD ? [20] : [80], 
       player: Otamendi,
     },
   ];
